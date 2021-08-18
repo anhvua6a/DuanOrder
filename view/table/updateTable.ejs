@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Danh sách nhân viên</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .kc_fab_main_btn {
+            background-color: #F44336;
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: #F44336;
+            border: none;
+            outline: none;
+            color: #FFF;
+            font-size: 36px;
+            position: fixed;
+            bottom: 140px;
+            right: 120px;
+        }
+        body{
+            background-image: linear-gradient(deepskyblue,lightpink);
+            min-height: 100vh;
+        }
+
+
+        @media screen and (min-width: 34em) {
+            .card-columns {
+                column-count: 1;
+            }
+
+        }
+
+        @media screen and (min-width: 62em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+        @media screen and (min-width: 75em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+
+        .form {
+            margin: 0px auto;
+            margin-bottom: 20px;
+            height: auto;
+            border: 1px solid black;
+            background-color: whitesmoke;
+            padding: 10px;
+            border-radius: 25px;
+            box-shadow: 5px 5px 20px black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="background-color: wheat; padding-bottom: 10px">
+
+    <!-- Phần header website -->
+
+    <nav class="navbar navbar-expand-sm bg-light navbar-light" style="border-radius: 20px 20px 0px 0px">
+        <a class="navbar-brand" href="#"><img src="/images/logo_text.png"
+                                              style=" width:150px; height:25px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <% if (role == "Admin") { %>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Nhân viên</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/menus">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tables">Bàn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bills">Hoá đơn</a>
+                    </li>
+                </ul>
+            <% } %>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Xin
+                        chào, <%= findUser.fullName %> (<%= role %>)
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                         aria-labelledby="navbarDropdownMenuLink-333">
+                        <% if (role == "Admin") { %>
+                            <a class="dropdown-item" href="/users/info/<%= findUser._id %>">Thông tin cá nhân</a>
+                        <% } %>
+                        <a class="dropdown-item" href="/logout" onclick="return confirm('Bạn có muốn đăng xuất?')">Đăng
+                            xuất</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Kết thúc phần menu chính -->
+    <div id="myCarousel" class="carousel slide border" data-ride="carousel" style="border-radius: 0px 0px 20px 20px">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-30" style="width:100%; height:350px; border-radius:  0px 0px 20px 20px"
+                     src="/images/slider-01.jpg" alt="Leopard">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-30" style="width:100%; height:350px; border-radius: 0px 0px 20px 20px"
+                     src="/images/slider-02.jpg"
+                     alt="Cat">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-30" style="width:100%; height:350px; border-radius: 0px 0px 20px 20px"
+                     src="/images/slider-03.jpg" alt="Lion">
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- Kết thúc phần menu chính -->
+
+    <!-- Phần nội dung chính -->
+
+    <h2 class="container" style="text-align: center">Cập nhật thông tin bàn</h2>
+    <br>
+    <form method="post" action="/tables/<%= findTable.id %>/update" class="form container" onsubmit="return validateForm()" enctype="multipart/form-data">
+        <div class="form-group">
+            <h6><label for="formGroupExampleInput">Số bàn</label></h6>
+            <input type="number" class="form-control" id="formGroupExampleInput" name="tableCode"
+                   value="<%= findTable.tableCode %>" placeholder="Bàn số">
+            <span id="tableCodes-err" class="validate-err text-danger"></span>
+        </div>
+
+        <div class="form-group" id="formAmount">
+            <h6><label for="formGroupExampleInput">Số ghế</label></h6>
+            <input type="Number" class="form-control" name="tableSeats" value="<%= findTable.tableSeats %>"
+                   placeholder="Số ghế">
+            <span id="tableSeats-err" class="validate-err text-danger"></span>
+        </div>
+        <% if (err){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= msg %>
+            </div>
+        <% } %>
+        <div class="text-center">
+            <button class="btn-primary btn-sm btn-success" type="submit">Cập nhật</button>
+            &nbsp;
+            <a href="/tables" class="btn-primary btn-sm btn-danger">Hủy</a>
+        </div>
+    </form>
+
+
+    <!-- Kết thúc phần nội dung chính -->
+
+
+</div>
+<script>
+    function validateForm(){
+        // validate data
+        let isValid = true;
+        $('.validate-err ').text("");
+        // kiểm tra từng thành phần, nếu thiếu thành phần nào thì isValid => false
+        let tableCode = $('[name="tableCode"]').val();
+        let tableSeats = $('[name="tableSeats"]').val();
+        if(parseInt(tableCode)<0|| tableCode.length<=0){
+            $('#tableCodes-err').text("Hãy nhập số bàn( số bàn phải lớn hơn 0)");
+            isValid = false;
+        }
+        if(parseInt(tableSeats)<0|| tableSeats.length<=0){
+            $('#tableSeats-err').text("Hãy nhập số ghế( số ghế phải lớn hơn 0)");
+            isValid = false;
+        }
+        return isValid;
+    }
+
+</script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,59 @@
+<% include ../public/stylesheets/style.ejs %>
+<% include ../public/stylesheets/boostrap.ejs %>
+<header>
+    <title>Hello</title>
+</header>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img  src="/images/logo.png" id="icon" alt="User Icon" />
+        </div>
+
+        <!-- Login Form -->
+        <form action="/auth" method="post" onsubmit="return validateForm()">
+            <input type="text" id="login" class="fadeIn second" name="phone" placeholder="Phone">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+            <% if (error){%>
+                <div class="alert alert-danger" role="alert">
+                    <%= msg %>
+                </div>
+            <%  }%>
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+
+        <!-- Remind Passowrd -->
+
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+</script>
+<script>
+    function validateForm(){
+        let isValid = true;
+        $('.alert-danger').remove();
+        let userName =  $('[name="email"]').val();
+        if (userName.length == 0){
+            isValid=false;
+            let userName_err =`<div class="alert alert-danger" role="alert">Username is empty</div>`
+            $('.username').after(userName_err)
+        }
+        let passWord =  $('[name="password"]').val();
+        if (passWord.length == 0){
+            isValid=false;
+            let passWord_err =`<div class="alert alert-danger" role="alert">Password is empty</div>`
+            $('.password').after(passWord_err)
+        }
+
+        return isValid;
+    }
+
+
+
+</script>

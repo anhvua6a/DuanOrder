@@ -1,0 +1,212 @@
+
+
+
+
+    <!-- Phần nội dung chính -->
+    <div class="container emp-profile">
+        <form method="post" action="/users/info/<%= userIf._id %>/update" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4 col-8">
+                    <div class="profile-img">
+                        <img src="<%= userIf.avatar %>" style="max-width:200px; max-height:150px" alt="avatar"
+                             class="avatar"/>
+                        <div class="file btn btn-lg btn-primary" style="max-width:200px; max-height:150px">
+                            Thay đổi ảnh
+                            <input type="file" name="avatar" class="file-upload"
+                                   style="max-width:200px; max-height:150px"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-4">
+                    <div class="profile-head">
+                        <h4 style="margin-top: 0px">
+                            <%= userIf.fullName %>
+                        </h4>
+                        <h5>
+                            Chức vụ: <%= userIf.role %>
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>HỒ SƠ</p>
+                        <a>Địa chỉ :</a>
+                        <a><%= userIf.address %></a></br>
+                        <a>Số điện thoại :</a>
+                        <a><%= userIf.phone %></a></br>
+                        <a>CMND :</a>
+                        <a><%= userIf.indentityCardNumber %></a>
+                    </div>
+                    <ul class="nav" id="myTab" style="margin-left: 40px">
+                        <li class="nav-item show active" style="margin: 0px">
+                            <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="true">Chỉnh sửa hồ sơ</a>
+                        </li>
+                        <li class="nav-item" style="margin: 0px">
+                            <a class="nav-link " id="home-tab" data-toggle="tab" href="#changePassword" role="tab"
+                               aria-controls="changePassword" aria-selected="true">Thay đổi mật khẩu</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-8" style="margin-top: 20px">
+
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane show active " id="profile" role="tabpanel">
+                            <form class="form" method="post" >
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-4 m-2">
+                                            <label for="first_name"><h6>Họ và tên</h6></label>
+                                            <input type="text" class="form-control" name="fullname"
+                                                   value="<%= userIf.fullName %>">
+                                        </div>
+                                        <div class="col-xs-4 m-2">
+                                            <label for="last_name"><h6>Số CMND</h6></label>
+                                            <input
+                                            <% if (role != "Admin"){ %>
+                                                disabled
+                                                    <% } %>
+                                                type="text" class="form-control" name="cmnd"
+                                                value="<%= userIf.indentityCardNumber %>"
+                                            >
+                                        </div>
+
+
+                                        <div class="form-group">
+
+                                            <div class="col-xs-4 m-2">
+                                                <label><h6>Chức vụ</h6></label>
+                                                <select
+                                                <% if (role != "Admin"){ %>
+                                                    disabled
+                                                        <% } %>
+                                                    class="form-control" name="role"
+                                                    value="<%= userIf.role %>">
+                                                    <option
+                                                    <% if (userIf.role == "Admin"){ %> selected
+                                                                                       <% } %>value="Admin">Admin
+                                                    </option>
+                                                    <option
+                                                    <% if (userIf.role == "Staff"){ %> selected
+                                                            <% } %>
+                                                                                       value="Staff">Staff
+                                                    </option>
+                                                    <option
+                                                    <% if (userIf.role == "Cashier"){ %> selected
+                                                            <% } %>
+                                                                                         value="Cashier">Cashier
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-xs-2 m-2">
+                                                <label><h6>Tuổi</h6></label>
+                                                <input type="number" class="form-control" name="age"
+                                                       value="<%= userIf.age %>"
+                                                       placeholder="Enter age number" title="Enter your age.">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-5 m-2">
+                                                <label for="phone"><h6>Số điện thoại</h6></label>
+                                                <input type="text" class="form-control" name="phone"
+                                                       value="<%= userIf.phone %>"
+                                                       placeholder="Enter phone number"
+                                                       title="Enter your phone number if any.">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-5 m-2">
+                                                <label for="email"><h6>Địa chỉ</h6></label>
+                                                <input type="text" name="address" class="form-control"
+                                                       value="<%= userIf.address %>"
+                                                       placeholder="Address" title="enter a location">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="password"><h6>Mật khẩu</h6></label>
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                   placeholder="Password" title="enter your password.">
+                                            <span id="pass-err" class="validate-err text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="password2"><h6>Nhập lại mật khẩu</h6></label>
+                                            <input type="password" class="form-control" name="password2" id="password2"
+                                                   placeholder="Confirm password" title="enter your password2.">
+                                            <span id="repass-err" class="validate-err text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <br>
+                                            <button class="btn btn-lg btn-success" type="submit"><i
+                                                        class="glyphicon glyphicon-ok-sign"></i> Lưu
+                                            </button>
+                                            <a href="/users" class="btn btn-lg btn-danger" type="reset"><i
+                                                        class="glyphicon glyphicon-repeat"></i>
+                                                Huỷ
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="changePassword" role="tabpanel">
+                            <form class="form" action="/users/info/<%= userIf._id %>/changepass" method="post">
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label for="first_name"><h6>Mật khẩu cũ</h6></label>
+                                        <input type="password" class="form-control" name="currentpass"
+                                               placeholder="Current password">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label for="last_name"><h6>Mật khẩu mới</h6></label>
+                                        <input type="password" class="form-control" name="newpass" id="password"
+                                               placeholder="A new password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <label for="phone"><h6>Nhập lại mật khẩu</h6></label>
+                                        <input type="password" class="form-control" name="confirmpass"
+                                               placeholder="Confirm password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <br>
+                                        <button class="btn btn-lg btn-success" type="submit"><i
+                                                    class="glyphicon glyphicon-ok-sign"></i> Thay đổi mật khẩu
+                                        </button>
+                                        <a href="/users" class="btn btn-lg btn-danger" type="reset"><i
+                                                    class="glyphicon glyphicon-repeat"></i>
+                                            Trở lại
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <% if (err){ %>
+            <div data-browse="qq"></div>
+        <% } %>
+    </div>

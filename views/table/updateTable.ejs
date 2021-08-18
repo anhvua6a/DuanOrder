@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Danh sách nhân viên</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .kc_fab_main_btn {
+            background-color: #F44336;
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: #F44336;
+            border: none;
+            outline: none;
+            color: #FFF;
+            font-size: 36px;
+            position: fixed;
+            bottom: 140px;
+            right: 120px;
+        }
+        body{
+            background-image: linear-gradient(deepskyblue,lightpink);
+            min-height: 100vh;
+        }
+
+
+        @media screen and (min-width: 34em) {
+            .card-columns {
+                column-count: 1;
+            }
+
+        }
+
+        @media screen and (min-width: 62em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+        @media screen and (min-width: 75em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+
+        .form {
+            margin: 0px auto;
+            margin-bottom: 20px;
+            height: auto;
+            border: 1px solid black;
+            background-color: whitesmoke;
+            padding: 10px;
+            border-radius: 25px;
+            box-shadow: 5px 5px 20px black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="background-color: wheat; padding-bottom: 10px">
+
+
+    <!-- Phần nội dung chính -->
+
+    <h2 class="container" style="text-align: center">Cập nhật thông tin bàn</h2>
+    <br>
+    <form method="post" action="/tables/<%= findTable.id %>/update" class="form container" onsubmit="return validateForm()" enctype="multipart/form-data">
+        <div class="form-group">
+            <h6><label for="formGroupExampleInput">Số bàn</label></h6>
+            <input type="number" class="form-control" id="formGroupExampleInput" name="tableCode"
+                   value="<%= findTable.tableCode %>" placeholder="Bàn số">
+            <span id="tableCodes-err" class="validate-err text-danger"></span>
+        </div>
+
+        <div class="form-group" id="formAmount">
+            <h6><label for="formGroupExampleInput">Số ghế</label></h6>
+            <input type="Number" class="form-control" name="tableSeats" value="<%= findTable.tableSeats %>"
+                   placeholder="Số ghế">
+            <span id="tableSeats-err" class="validate-err text-danger"></span>
+        </div>
+        <% if (err){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= msg %>
+            </div>
+        <% } %>
+        <div class="text-center">
+            <button class="btn-primary btn-sm btn-success" type="submit">Cập nhật</button>
+            &nbsp;
+            <a href="/tables" class="btn-primary btn-sm btn-danger">Hủy</a>
+        </div>
+    </form>
+
+
+    <!-- Kết thúc phần nội dung chính -->
+
+
+</div>
+<script>
+    function validateForm(){
+        // validate data
+        let isValid = true;
+        $('.validate-err ').text("");
+        // kiểm tra từng thành phần, nếu thiếu thành phần nào thì isValid => false
+        let tableCode = $('[name="tableCode"]').val();
+        let tableSeats = $('[name="tableSeats"]').val();
+        if(parseInt(tableCode)<0|| tableCode.length<=0){
+            $('#tableCodes-err').text("Hãy nhập số bàn( số bàn phải lớn hơn 0)");
+            isValid = false;
+        }
+        if(parseInt(tableSeats)<0|| tableSeats.length<=0){
+            $('#tableSeats-err').text("Hãy nhập số ghế( số ghế phải lớn hơn 0)");
+            isValid = false;
+        }
+        return isValid;
+    }
+
+</script>
+</body>
+</html>
+
+
+

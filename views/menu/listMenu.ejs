@@ -1,0 +1,93 @@
+<div class="card-columns">
+    <% for (let i = 0; i < listFood.length; i++) { %>
+        <div class="card">
+
+            <img class="card-img-top" src="<%= listFood[i].image %>" alt="Card image cap" width="150" height="300">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= listFood[i].name %>
+                </h5>
+                <span>Giá:
+                    <%= listFood[i].price %>
+                    đ</span>
+                <br>
+                <a onclick="return confirm('Bạn có muốn xóa thông tin người này')"
+                   href="/menu/delete/<%= listFood[i]._id %>"
+                   class="btn btn-danger">Xoá</a>
+            </div>
+        </div>
+    <% } %>
+
+</div>
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link"  onclick="prePage(<%=currentPage%>)"  <% if (currentPage == 1) {%> tabindex="-1" <%}%>>Previous</a>
+        </li>
+        <% for (let i = 1; i <= totalPages; i++) {%>
+        <li class="page-item "><a class="page-link <% if (i == currentPage) {%> selected <%}%>" onclick="changePage(i)"  href="/menus?page=<%=i%>"><%=i%></a></li>
+        <%}%>
+        <li class="page-item">
+            <a class="page-link" onclick="nextPage(<%=currentPage%>)" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+
+
+<script>
+    function changePage(currentPage) {
+        console.log(currentPage)
+    }
+
+    function prePage(currentPage) {
+
+    }
+
+    function nextPage(currentPage) {
+        currentPage++
+    }
+    // Returns an array of maxLength (or less) page numbers
+    // where a 0 in the returned array denotes a gap in the series.
+    // Parameters:
+    //   totalPages:     total number of pages
+    //   page:           current page
+    //   maxLength:      maximum size of returned array
+    function getPageList(totalPages, page, maxLength) {
+        if (maxLength < 5) throw "maxLength must be at least 5";
+
+        function range(start, end) {
+            return Array.from(Array(end - start + 1), (_, i) => i + start);
+        }
+
+        var sideWidth = maxLength < 9 ? 1 : 2;
+        var leftWidth = (maxLength - sideWidth*2 - 3) >> 1;
+        var rightWidth = (maxLength - sideWidth*2 - 2) >> 1;
+        if (totalPages <= maxLength) {
+            // no breaks in list
+            return range(1, totalPages);
+        }
+        if (page <= maxLength - sideWidth - 1 - rightWidth) {
+            // no break on left of page
+            return range(1, maxLength - sideWidth - 1)
+                .concat(0, range(totalPages - sideWidth + 1, totalPages));
+        }
+        if (page >= totalPages - sideWidth - 1 - rightWidth) {
+            // no break on right of page
+            return range(1, sideWidth)
+                .concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+        }
+        // Breaks on both sides
+        return range(1, sideWidth)
+            .concat(0, range(page - leftWidth, page + rightWidth),
+                0, range(totalPages - sideWidth + 1, totalPages));
+    }
+
+</script>
+
+<style>
+    .selected {
+        color:red !important;
+    }
+</style>

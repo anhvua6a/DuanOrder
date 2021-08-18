@@ -1,0 +1,155 @@
+<style>
+        .kc_fab_main_btn {
+            background-color: #F44336;
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: #F44336;
+            border: none;
+            outline: none;
+            color: #FFF;
+            font-size: 36px;
+            position: fixed;
+            bottom: 140px;
+            right: 120px;
+        }
+
+        body {
+            background-image: linear-gradient(deepskyblue, lightpink);
+            min-height: 100vh;
+        }
+
+
+        @media screen and (min-width: 34em) {
+            .card-columns {
+                column-count: 1;
+            }
+
+        }
+
+        @media screen and (min-width: 62em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+        @media screen and (min-width: 75em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+        #item_User {
+
+            border-radius: 25px;
+            background: whitesmoke;
+            box-shadow: 5px 5px 5px black;
+        }
+
+        #item_User:hover {
+            background: deepskyblue;
+        }
+
+        .pagination > li > a {
+            background-color: white;
+            color: green
+        }
+
+        .page-item.active .page-link {
+            background-color: green;
+            border-color: green
+        }
+
+        .pagination > li > a:focus,
+        .pagination > li > a:hover,
+        .pagination > li > span:focus,
+        .pagination > li > span:hover {
+            color: green;
+            background-color: green;
+            border-color: #ddd;
+        }
+
+        .pagination > .active > a {
+            color: green;
+            background-color: green;
+            border: solid 1px green;
+        }
+
+        .pagination > .active > a:hover {
+            background-color: green;
+            border: solid 1px green;
+        }
+    </style>
+<div class="container" style="background-color: wheat; padding-bottom: 10px">
+
+    <!-- Phần nội dung chính -->
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="page-section">
+                <h1 class="page-title" style="margin-top: 20px">Danh sách bàn</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5 justify-content-center">
+
+        <div class="card-columns">
+            <% for (var i = 0; i < listTable.length; i++) { %>
+                <div class="card p-3" id="item_User">
+                    <div class="d-flex align-items-center">
+                        <div class="image"><img style="width: 155px; height: 155px"
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOMa3gyhaJRl0ylT08714xasFmnFYE89BsbA&usqp=CAU"
+                                                class="rounded"></div>
+                        <div class="ml-3 w-100" id="name">
+                            <h6 class="mb-0 mt-0">Số bàn : <%= listTable[i].tableCode %></h6>
+                            <span>Chỗ ngồi : <%= listTable[i].tableSeats %></span>
+                            <div>
+                                <a href="/tables/<%= listTable[i]._id %>/delete"
+                                   onclick="return confirm('Bạn có muốn xóa bàn này')"
+                                   class="btn btn-danger btn-sm">Xóa</a>
+                                <a href="/tables/<%= listTable[i]._id %>/update" class="btn btn-sm btn-primary">Cập
+                                    nhật</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <% } %>
+        </div>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="/tables?page=1">1</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=2">2</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=3">3</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=4">4</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=5">5</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=6">6</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=7">7</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=8">8</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=9">9</a></li>
+            <li class="page-item"><a class="page-link" href="/tables?page=10">10</a></li>
+        </ul>
+
+    </div>
+
+</div>
+<form method="get" action="/tables/create">
+    <button class="kc_fab_main_btn" type="submit">+</button>
+</form>
+<script>
+    $('#demo').pagination({
+        dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 195],
+    callback: function(data, pagination) {
+        // template method of yourself
+        var html = template(data);
+        dataContainer.html(html);
+    }
+    })
+</script>
+
+</div>
+</body>
+</html>
+
+
