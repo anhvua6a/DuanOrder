@@ -19,7 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d5f6d16-2e1d-4878-b88c-4ccad087c7e6" name="Default Changelist" comment="" />
+    <list default="true" id="9d5f6d16-2e1d-4878-b88c-4ccad087c7e6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/smartdatdo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/billController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/billController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/menuController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/menuController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/tableController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/tableController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/menu/listMenu.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/listMenu.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/table/listTable.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/table/listTable.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/temp/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/temp/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/listUser.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/listUser.ejs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +49,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/DuanOrder" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1i3S3YYyMqkcKDqcSmNpWro4Pq7" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -54,7 +67,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.14.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.20.19" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/uploads/menus" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -70,11 +83,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\Sever 402\LabSv\SmartOrder\Duan\DuanOrder" />
       <recent name="C:\Users\Dell\Desktop\Sever 402\LabSv\SmartOrder\Duan\uploads\menus" />
       <recent name="C:\Users\Dell\Desktop\Sever 402\LabSv\SmartOrder\Duan" />
       <recent name="D:\Duan2\Duan\api" />
       <recent name="D:\Duan2\Duan\views\menu" />
-      <recent name="D:\Duan2\Duan\routes" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Dell\Desktop\Sever 402\LabSv\SmartOrder\Duan\views" />
@@ -209,6 +222,10 @@
       <workItem from="1629174748959" duration="677000" />
       <workItem from="1629211911316" duration="597000" />
       <workItem from="1629272086495" duration="302000" />
+      <workItem from="1629279116902" duration="125000" />
+      <workItem from="1629279263324" duration="3533000" />
+      <workItem from="1629304658603" duration="685000" />
+      <workItem from="1629355259128" duration="4192000" />
     </task>
     <servers />
   </component>

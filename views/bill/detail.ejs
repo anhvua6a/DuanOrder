@@ -1,0 +1,99 @@
+
+    <style>
+        .kc_fab_main_btn {
+            background-color: #F44336;
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background: #F44336;
+            border: none;
+            outline: none;
+            color: #FFF;
+            font-size: 36px;
+            position: fixed;
+            bottom: 140px;
+            right: 120px;
+        }
+
+        body{
+            background-image: linear-gradient(deepskyblue,lightpink);
+            min-height: 100vh;
+        }
+
+        @media screen and (min-width: 34em) {
+            .card-columns {
+                column-count: 1;
+            }
+
+        }
+
+        @media screen and (min-width: 62em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+        @media screen and (min-width: 75em) {
+            .card-columns {
+                column-count: 2;
+            }
+
+        }
+
+        #item_User {
+
+            border-radius: 25px;
+            background: whitesmoke;
+            box-shadow: 5px 5px 5px black;
+        }
+
+        #item_User:hover {
+            background: deepskyblue;
+        }
+    </style>
+
+<div class="container">
+
+    <!-- Phần nội dung chính -->
+
+    <main class="container">
+        <div class="page-section">
+            <h1 class="page-title">Hoá đơn chi tiết</h1>
+        </div>
+        <div class="jumbotron">
+            <h1 class="display-6">Mã hoá đơn: <%= bills.billCode %></h1>
+            <h3 class="display-6">Ngày giờ: <%= bills.dateBill %></h3>
+            <h3 class="display-6">Nhân viên: <%= bills.nameOrder %></h3>
+            <h3 class="display-6">Thu ngân: <%= bills.nameCashier %></h3>
+            <h3 class="display-6">Số bàn: <%= bills.tableCode %></h3>
+            <h3 class="display-6" style="color: #00B7FF">Tổng giá: <%= bills.totalPrice %></h3>
+            <h3 class="display-6" style="color: green">Trạng thái: <%= bills.status %></h3>
+            <table class="table table-stripped">
+                <thead align="center">
+                <th>Tên món ăn</th>
+                <th width="70">Ảnh</th>
+                <th>Số lượng</th>
+                <th>Giá</th>
+                <th>Tổng</th>
+                </thead>
+                <tbody align="center">
+                <% for(let i = 0; i < billones.length; i++){ %>
+                    <tr>
+                        <td><%= billones[i].name %></td>
+                        <td>
+                            <img src="<%= billones[i].image %>" class="img-fluid">
+                        </td>
+                        <td><%= billones[i].sl %></td>
+                        <td><%= billones[i].price %></td>
+                        <td><%= billones[i].totalMoney %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+
+

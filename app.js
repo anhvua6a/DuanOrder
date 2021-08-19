@@ -13,6 +13,13 @@ let billRoutes = require('./routes/billRoutes');
 let mongoose = require('./monggo/monggosv');
 let expressLayouts = require('express-ejs-layouts');
 
+let admin = require("firebase-admin");
+
+let serviceAccount = require("./smartdatdo.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 let app = express();
 
@@ -30,6 +37,8 @@ app.use(fileUpload({
 }));
 
 app.use(expressLayouts);
+
+
 
 
 app.use('/', authRoutes);

@@ -1,3 +1,18 @@
+<div class="row justify-content-lg-end">
+    <div class="col-4 m-3">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button type="button" class="btn btn-outline-success ml-1" data-toggle="modal" data-target="#exampleAddFoodModal">
+                Add Food
+            </button>
+        </form>
+
+    </div>
+
+
+</div>
+
 <div class="card-columns">
     <% for (let i = 0; i < listFood.length; i++) { %>
         <div class="card">
@@ -14,8 +29,55 @@
                 <a onclick="return confirm('Bạn có muốn xóa thông tin người này')"
                    href="/menu/delete/<%= listFood[i]._id %>"
                    class="btn btn-danger">Xoá</a>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                    Update
+                </button>
             </div>
         </div>
+
+<!--        modal update-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Food</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/menus/<%= listFood[i]._id %>/update" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Food Name</label>
+                            <input type="text" class="form-control" name="name" value="<%= listFood[i].name %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Price</label>
+                            <input type="number" class="form-control" name="price" value="<%= listFood[i].price %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Image</label>
+                            <input type="file" class="form-control" name="image">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Type</label>
+                            <select class="form-control" name="type" id="select">
+                                <option value="Food">Food</option>
+                                <option value="Drink">Drink</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     <% } %>
 
 </div>
@@ -91,3 +153,47 @@
         color:red !important;
     }
 </style>
+
+<!-- Modal add food -->
+<div class="modal fade" id="exampleAddFoodModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm Món Ăn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/menus/create" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Food Name</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Price</label>
+                        <input type="number" class="form-control" name="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Type</label>
+                        <select class="form-control" name="type" id="select">
+                            <option value="Food">Food</option>
+                            <option value="Drink">Drink</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Image</label>
+                        <input type="file"  class="form-control" name="image">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" >Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

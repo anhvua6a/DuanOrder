@@ -3,18 +3,16 @@ let menu = require('../model/menu');
 
 module.exports.getListMenu = async (req, res) => {
     let keyword = req.query.keyword == undefined ? "" : req.query.keyword;
-    let listFood = await menu.find({type: "Food", name: new RegExp(keyword, 'i')});
-    let listDrink = await menu.find({type: "Drink", name: new RegExp(keyword, 'i')});
-    let listOther = await menu.find({type: "Other", name: new RegExp(keyword, 'i')});
+    let listFood = await menu.find({ name: new RegExp(keyword, 'i')});
+
     var page = parseInt(req.query.page) || 1;
-    var perPage = 6;
+    var perPage = 9;
     var start = (page - 1) * perPage;
     var end = page * perPage;
     console.log(listFood.slice(start, end));
     res.render('menu/listMenu', {
         listFood: listFood.slice(start, end),
-        listDrink: listDrink.slice(start, end),
-        listOther: listOther.slice(start, end),
+
         keyword,
         layout: 'temp/index',
         title: 'Menu',
@@ -59,6 +57,7 @@ module.exports.getUpdate = async (req, res) => {
 }
 module.exports.postUpdate = async (req, res) => {
     let foodId = req.params.id;
+    console.log('abc')
     let findFood = await menu.findById(foodId);
     if (findFood) {
         let name = req.body.name;

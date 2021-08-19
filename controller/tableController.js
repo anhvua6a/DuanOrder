@@ -6,10 +6,18 @@ module.exports.getListTable = async (req, res) => {
     let keyword = req.query.keyword === undefined ? "" : req.query.keyword;
     let listTable = await table.find();
     var page = parseInt(req.query.page) || 1;
-    var perPage = 8;
+    var perPage = 9;
     var start = (page - 1) * perPage;
     var end = page * perPage;
-    res.render('table/listTable', {listTable: listTable.slice(start,end),layout:'temp/index',title:'login',img:''});
+    res.render('table/listTable', {
+        listTable: listTable.slice(start,end),
+        keyword,
+        layout:'temp/index',
+        title:'table',
+        img:'',
+        currentPage:1,
+        totalPages:5
+    });
 }
 module.exports.getCreate = async (req, res) => {
 

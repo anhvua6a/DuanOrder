@@ -7,10 +7,15 @@ module.exports.getAllBills = async (req, res) => {
     let keyword = req.query.keyword == undefined ? "" : req.query.keyword;
     let Bills = await bill.find({billCode: new RegExp(keyword, 'i')});
     var page = parseInt(req.query.page) || 1;
-    var perPage = 8;
+    var perPage = 6;
     var start = (page - 1) * perPage;
     var end = page * perPage;
-    res.render('bill/listBill', {bills: Bills.slice(start,end) , keyword});
+    res.render('bill/listBill', {bills: Bills.slice(start,end) , keyword,
+        layout: 'temp/index',
+        title: 'List Bill',
+        currentPage:1,
+        totalPages:5});
+
 }
 
 module.exports.getBills = async (req, res) => {
@@ -18,7 +23,8 @@ module.exports.getBills = async (req, res) => {
     let bills = await bill.findOne({billCode: id}).catch((err) => {
     });
     let billones = await billone.find({billCode: id});
-    res.render('bill/detail', {bills, billones});
+    res.render('bill/detail', {bills, billones,layout: 'temp/index',
+        title: 'List Bill'});
 }
 
 module.exports.getCreateBill = async (req, res) => {
