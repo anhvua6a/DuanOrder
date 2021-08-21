@@ -40,9 +40,6 @@ module.exports.postUpdate = async (req, res) => {
     if (findFood) {
         let image = findFood.image;
         let status = req.body.status;
-        if (findFood.type == "Food"){
-            status = true;
-        }
         if (req.files) {
             let avatarName = "/menus/" + uniqid() + "-" + req.files.avatar.name;
             req.files.avatar.mv(`./uploads${avatarName}`);
