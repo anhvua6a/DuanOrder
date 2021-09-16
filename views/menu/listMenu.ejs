@@ -26,8 +26,8 @@
                     <%= listFood[i].price %>
                     đ</span>
                 <br>
-                <a onclick="return confirm('Bạn có muốn xóa thông tin người này')"
-                   href="/menu/delete/<%= listFood[i]._id %>"
+                <a onclick="return confirm('Bạn có muốn xóa cái này')"
+                   href="/menus/<%= listFood[i]._id %>/delete"
                    class="btn btn-danger">Xoá</a>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#u<%= listFood[i]._id %>">
                     Update

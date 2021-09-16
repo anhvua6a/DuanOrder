@@ -85,6 +85,7 @@ module.exports.postUpdate = async (req, res) => {
     }
 }
 module.exports.deleteMenu = async (req, res) => {
+    console.log('abc')
     let foodId = req.params.id;
     let findFood = await menu.findById(foodId);
     if (findFood) {
