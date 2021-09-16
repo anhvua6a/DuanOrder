@@ -12,7 +12,6 @@ module.exports.getListMenu = async (req, res) => {
     console.log(listFood.slice(start, end));
     res.render('menu/listMenu', {
         listFood: listFood.slice(start, end),
-
         keyword,
         layout: 'temp/index',
         title: 'Menu',
@@ -57,7 +56,6 @@ module.exports.getUpdate = async (req, res) => {
 }
 module.exports.postUpdate = async (req, res) => {
     let foodId = req.params.id;
-    console.log('abc')
     let findFood = await menu.findById(foodId);
     if (findFood) {
         let name = req.body.name;
