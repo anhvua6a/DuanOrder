@@ -98,7 +98,7 @@ module.exports.postOrder = async (req, res) => {
             let datetime = currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/"
                 + currentdate.getFullYear() + " @ "
-                + currentdate.getHours() + ":"
+                + (currentdate.getHours()+7) + ":"
                 + currentdate.getMinutes() + ":"
                 + currentdate.getSeconds();
             let list = await bill.find({});
